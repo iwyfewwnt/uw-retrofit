@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package io.github.u004.retrofitext;
+package io.github.iwyfewwnt.uwtrofit.services.requests;
 
 /**
- * A retrofit client interface.
+ * A request builder interface.
+ *
+ * <p>Defines a method for building requests.
+ *
+ * @param <T>	request type
  */
-@SuppressWarnings("unused")
-public interface IRetrofitClient {
+public interface IRequestBuilder<T extends IRequest> {
 
 	/**
-	 * Get a service wrapper/implementation
-	 * for the provided service interface class.
+	 * Build request.
 	 *
-	 * @param clazz			service interface class
-	 * @return				service wrapper/implementation
+	 * @return	request object
 	 */
-	Object getService(Class<?> clazz);
+	T build();
 }

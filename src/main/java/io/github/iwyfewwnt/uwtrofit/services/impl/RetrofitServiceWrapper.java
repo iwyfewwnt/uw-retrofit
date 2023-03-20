@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package io.github.u004.retrofitext.services.impl;
+package io.github.iwyfewwnt.uwtrofit.services.impl;
 
-import io.github.u004.retrofitext.services.IServiceWrapper;
+import io.github.iwyfewwnt.uwtrofit.services.IServiceWrapper;
 import retrofit2.Retrofit;
 
 /**

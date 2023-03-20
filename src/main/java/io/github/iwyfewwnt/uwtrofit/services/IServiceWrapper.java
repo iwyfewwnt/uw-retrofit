@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.u004.retrofitext.services;
+package io.github.iwyfewwnt.uwtrofit.services;
 
 /**
  * A service wrapper interface.

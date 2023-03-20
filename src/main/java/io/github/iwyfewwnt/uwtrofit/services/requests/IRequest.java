@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 u004
+ * Copyright 2023 u004
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,12 @@
  * limitations under the License.
  */
 
-package io.github.u004.retrofitext.services.requests;
+package io.github.iwyfewwnt.uwtrofit.services.requests;
+
+import java.io.Serializable;
 
 /**
- * A request builder interface.
- *
- * <p>Defines a method for building requests.
- *
- * @param <T>	request type
+ * A request interface.
  */
-public interface IRequestBuilder<T extends IRequest> {
-
-	/**
-	 * Build request.
-	 *
-	 * @return	request object
-	 */
-	T build();
+public interface IRequest extends Serializable {
 }

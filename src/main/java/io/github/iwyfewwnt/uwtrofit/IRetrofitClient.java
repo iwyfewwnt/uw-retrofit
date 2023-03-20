@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 u004
+ * Copyright 2023 u004
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package io.github.u004.retrofitext.services.requests;
-
-import java.io.Serializable;
+package io.github.iwyfewwnt.uwtrofit;
 
 /**
- * A request interface.
+ * A retrofit client interface.
  */
-public interface IRequest extends Serializable {
+@SuppressWarnings("unused")
+public interface IRetrofitClient {
+
+	/**
+	 * Get a service wrapper/implementation
+	 * for the provided service interface class.
+	 *
+	 * @param clazz			service interface class
+	 * @return				service wrapper/implementation
+	 */
+	Object getService(Class<?> clazz);
 }
