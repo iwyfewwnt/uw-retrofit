@@ -158,6 +158,7 @@
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven.javadoc.version}</version>
                         <configuration>
+                            <doclint>all,-missing</doclint>
                             <stylesheetfile>${javadoc.stylesheet.filePath}</stylesheetfile>
                         </configuration>
                         <executions>
