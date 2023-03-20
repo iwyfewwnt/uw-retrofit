@@ -6,7 +6,7 @@
 
     <groupId>io.github.u004</groupId>
     <artifactId>retrofit-ext</artifactId>
-    <version>2.9.0</version>
+    <version>2.9.0_1-SNAPSHOT</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Extension on top of the Retrofit2 library</description>
@@ -53,6 +53,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <retrofit.version>2.9.0</retrofit.version>
         <vavr.version>0.10.4</vavr.version>
         <reactor-adapter.version>2.1.0</reactor-adapter.version>
 
@@ -83,13 +84,13 @@
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
             <artifactId>retrofit</artifactId>
-            <version>${project.version}</version>
+            <version>${retrofit.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.squareup.retrofit2</groupId>
             <artifactId>converter-gson</artifactId>
-            <version>${project.version}</version>
+            <version>${retrofit.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
