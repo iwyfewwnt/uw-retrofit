@@ -17,7 +17,6 @@
 package io.github.iwyfewwnt.uwtrofit.services.requests;
 
 import io.vavr.control.Try;
-import reactor.core.publisher.Mono;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -44,19 +43,5 @@ public interface IRequestManager<T extends IRequest, R> extends IRequestBuilder<
 	 */
 	default Try<R> execute() {
 		return this.execute(this.build());
-	}
-
-	/**
-	 * Wrap {@link IRequestExecutor#rxEnqueue(IRequest)}..
-	 */
-	default Mono<R> rxEnqueue() {
-		return this.rxEnqueue(this.build());
-	}
-
-	/**
-	 * Wrap {@link IRequestExecutor#rxExecute(IRequest)}.
-	 */
-	default Mono<R> rxExecute() {
-		return this.rxExecute(this.build());
 	}
 }

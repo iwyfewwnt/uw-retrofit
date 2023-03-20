@@ -17,8 +17,6 @@
 package io.github.iwyfewwnt.uwtrofit.services.requests;
 
 import io.vavr.control.Try;
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.Sinks;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,54 +78,6 @@ public interface IRequestExecutor<T extends IRequest, R> {
 		return Try.of(() -> this.call(request))
 				.flatMap(call -> Try.of(call::execute))
 				.flatMap(IRequestExecutor::unwrap);
-	}
-
-	/**
-	 * Asynchronously execute retrofit service method.
-	 *
-	 * <p>Wraps response using <i>Spring Reactor</i>.
-	 *
-	 * @param request	request object
-	 * @return			unwrapped response that wrapped in {@link Mono}
-	 */
-	default Mono<R> rxEnqueue(T request) {
-		Sinks.Many<R> sink = Sinks.many()
-				.multicast()
-				.onBackpressureBuffer();
-
-		this.enqueue(request)
-				.whenComplete((result, throwable) -> {
-					if (throwable != null) {
-						sink.tryEmitError(throwable);
-					}
-
-					if (result != null) {
-						sink.tryEmitNext(result);
-					}
-
-					sink.tryEmitComplete();
-				});
-
-		return sink.asFlux()
-				.single();
-	}
-
-	/**
-	 * Synchronously execute retrofit service method.
-	 *
-	 * <p>Wraps response using <i>Spring Reactor</i>.
-	 *
-	 * @param request	request object
-	 * @return			unwrapped response that wrapped in {@link Mono}
-	 */
-	default Mono<R> rxExecute(T request) {
-		Try<R> resultTry = this.execute(request);
-
-		if (resultTry.isFailure()) {
-			return Mono.error(resultTry.getCause());
-		}
-
-		return Mono.justOrEmpty(resultTry.getOrNull());
 	}
 
 	/**

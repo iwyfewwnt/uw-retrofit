@@ -19,7 +19,6 @@ package io.github.iwyfewwnt.uwtrofit.services.requests.impl;
 import io.github.iwyfewwnt.uwtrofit.services.requests.IRequest;
 import io.github.iwyfewwnt.uwtrofit.services.requests.IRequestManager;
 import io.vavr.control.Try;
-import reactor.core.publisher.Mono;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -55,22 +54,6 @@ public abstract class AbstractRequestManager<T extends IRequest, R> implements I
 	}
 
 	/**
-	 * Wrap {@link IRequestManager#rxEnqueue()} and make it final.
-	 */
-	@Override
-	public final Mono<R> rxEnqueue() {
-		return IRequestManager.super.rxEnqueue();
-	}
-
-	/**
-	 * Wrap {@link IRequestManager#rxExecute()} and make it final.
-	 */
-	@Override
-	public final Mono<R> rxExecute() {
-		return IRequestManager.super.rxExecute();
-	}
-
-	/**
 	 * Wrap {@link IRequestManager#enqueue(IRequest)} and make it final.
 	 */
 	@Override
@@ -84,21 +67,5 @@ public abstract class AbstractRequestManager<T extends IRequest, R> implements I
 	@Override
 	public final Try<R> execute(T request) {
 		return IRequestManager.super.execute(request);
-	}
-
-	/**
-	 * Wrap {@link IRequestManager#rxEnqueue(IRequest)} and make it final.
-	 */
-	@Override
-	public final Mono<R> rxEnqueue(T request) {
-		return IRequestManager.super.rxEnqueue(request);
-	}
-
-	/**
-	 * Wrap {@link IRequestManager#rxExecute(IRequest)} and make it final.
-	 */
-	@Override
-	public final Mono<R> rxExecute(T request) {
-		return IRequestManager.super.rxExecute(request);
 	}
 }
