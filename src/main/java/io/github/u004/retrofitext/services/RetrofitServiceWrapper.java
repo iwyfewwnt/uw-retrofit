@@ -19,16 +19,15 @@ package io.github.u004.retrofitext.services;
 import retrofit2.Retrofit;
 
 /**
- * A service interface implementation wrapper.
+ * A retrofit service wrapper.
  *
- * <p>{@code ServiceWrapper} is the class that
- * wraps retrofit service and extends it to base
- * classes.
+ * <p>{@code RetrofitServiceWrapper} is the class that
+ * wraps retrofit service and extends it to base classes.
  *
  * @param <T>	retrofit service type
  */
 @SuppressWarnings("unused")
-public class ServiceWrapper<T> {
+public class RetrofitServiceWrapper<T> implements IServiceWrapper<T> {
 
 	/**
 	 * Retrofit service instance.
@@ -36,20 +35,19 @@ public class ServiceWrapper<T> {
 	protected final T service;
 
 	/**
-	 * Initialize a {@code ServiceWrapper} instance.
+	 * Initialize a {@code RetrofitServiceWrapper} instance.
 	 *
 	 * @param retrofit		retrofit instance
-	 * @param clazz			retrofit service class type
+	 * @param clazz			retrofit service class
 	 */
-	protected ServiceWrapper(Retrofit retrofit, Class<T> clazz) {
+	protected RetrofitServiceWrapper(Retrofit retrofit, Class<T> clazz) {
 		this.service = retrofit.create(clazz);
 	}
 
 	/**
-	 * Get this retrofit service instance.
-	 *
-	 * @return		retrofit service instance
+	 * {@inheritDoc}
 	 */
+	@Override
 	public final T getService() {
 		return this.service;
 	}
