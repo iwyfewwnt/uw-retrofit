@@ -23,8 +23,8 @@ import io.github.u004.retrofitext.services.requests.IRequest;
  *
  * <p>Extends from {@link AbstractRequestManager}.
  *
- * @param <T>	{@code BaseRequestManager} type
- * @param <U>	type w/ the {@link IRequest} base
+ * @param <T>	manager type
+ * @param <U>	request type
  * @param <R>	response type
  */
 @SuppressWarnings("unused")

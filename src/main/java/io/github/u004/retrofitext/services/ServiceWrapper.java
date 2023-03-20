@@ -31,14 +31,14 @@ import retrofit2.Retrofit;
 public class ServiceWrapper<T> {
 
 	/**
-	 * Retrofit service implementation instance.
+	 * Retrofit service instance.
 	 */
 	protected final T service;
 
 	/**
 	 * Initialize a {@code ServiceWrapper} instance.
 	 *
-	 * @param retrofit		{@link Retrofit} instance
+	 * @param retrofit		retrofit instance
 	 * @param clazz			retrofit service class type
 	 */
 	protected ServiceWrapper(Retrofit retrofit, Class<T> clazz) {

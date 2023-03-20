@@ -21,7 +21,7 @@ package io.github.u004.retrofitext.services.requests;
  *
  * <p>Defines a method for building requests.
  *
- * @param <T>	type w/ the {@link IRequest} base
+ * @param <T>	request type
  */
 public interface IRequestBuilder<T extends IRequest> {
 

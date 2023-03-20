@@ -26,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * An {@link IRequestManager} implementation.
  *
- * @param <T>	type w/ the {@link IRequest} base
+ * @param <T>	request type
  * @param <R>	response type
  */
 @SuppressWarnings("unused")

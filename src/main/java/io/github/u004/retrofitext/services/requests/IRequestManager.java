@@ -25,49 +25,36 @@ import java.util.concurrent.CompletableFuture;
  * A request manager interface.
  *
  * <p>Composer of an {@link IRequestBuilder} and {@link IRequestExecutor}.
- * Wraps {@code IRequestExecutor#*enqueue} and {@code IRequestExecutor#*execute} methods.
  *
- * @param <T>	type w/ the {@link IRequest} base
+ * @param <T>	request type
  * @param <R>	response type
  */
 @SuppressWarnings("unused")
 public interface IRequestManager<T extends IRequest, R> extends IRequestBuilder<T>, IRequestExecutor<T, R> {
 
 	/**
-	 * Asynchronously execute retrofit service method.
-	 *
-	 * @return	unwrapped response that wrapped in {@link CompletableFuture}
+	 * Wrap {@link IRequestExecutor#enqueue(IRequest)}.
 	 */
 	default CompletableFuture<R> enqueue() {
 		return this.enqueue(this.build());
 	}
 
 	/**
-	 * Synchronously execute retrofit service method.
-	 *
-	 * @return	unwrapped response that wrapped in {@link Try}
+	 * Wrap {@link IRequestExecutor#execute(IRequest)}.
 	 */
 	default Try<R> execute() {
 		return this.execute(this.build());
 	}
 
 	/**
-	 * Asynchronously execute retrofit service method.
-	 *
-	 * <p>Wraps response using <i>Spring Reactor</i>.
-	 *
-	 * @return	unwrapped response that wrapped in {@link Mono}
+	 * Wrap {@link IRequestExecutor#rxEnqueue(IRequest)}..
 	 */
 	default Mono<R> rxEnqueue() {
 		return this.rxEnqueue(this.build());
 	}
 
 	/**
-	 * Synchronously execute retrofit service method.
-	 *
-	 * <p>Wraps response using <i>Spring Reactor</i>.
-	 *
-	 * @return	unwrapped response that wrapped in {@link Mono}
+	 * Wrap {@link IRequestExecutor#rxExecute(IRequest)}.
 	 */
 	default Mono<R> rxExecute() {
 		return this.rxExecute(this.build());

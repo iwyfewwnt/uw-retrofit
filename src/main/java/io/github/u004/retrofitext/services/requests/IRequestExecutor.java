@@ -30,23 +30,23 @@ import java.util.concurrent.CompletableFuture;
  *
  * <p>Defines methods for executing requests.
  *
- * @param <T>	type w/ the {@link IRequest} base
+ * @param <T>	request type
  * @param <R>	response type
  */
 public interface IRequestExecutor<T extends IRequest, R> {
 
 	/**
-	 * Execute retrofit service method that returns {@link Call} object.
+	 * Execute retrofit service method.
 	 *
-	 * @param request	request
-	 * @return			{@code Call} object
+	 * @param request	request object
+	 * @return			unwrapped response that wrapped in {@link Call}
 	 */
 	Call<R> call(T request);
 
 	/**
 	 * Asynchronously execute retrofit service method.
 	 *
-	 * @param request	request
+	 * @param request	request object
 	 * @return			unwrapped response that wrapped in {@link CompletableFuture}
 	 */
 	default CompletableFuture<R> enqueue(T request) {
@@ -73,7 +73,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	/**
 	 * Synchronously execute retrofit service method.
 	 *
-	 * @param request	request
+	 * @param request	request object
 	 * @return			unwrapped response that wrapped in {@link Try}
 	 */
 	default Try<R> execute(T request) {
@@ -87,7 +87,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	 *
 	 * <p>Wraps response using <i>Spring Reactor</i>.
 	 *
-	 * @param request	request
+	 * @param request	request object
 	 * @return			unwrapped response that wrapped in {@link Mono}
 	 */
 	default Mono<R> rxEnqueue(T request) {
@@ -117,7 +117,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	 *
 	 * <p>Wraps response using <i>Spring Reactor</i>.
 	 *
-	 * @param request	request
+	 * @param request	request object
 	 * @return			unwrapped response that wrapped in {@link Mono}
 	 */
 	default Mono<R> rxExecute(T request) {
@@ -133,7 +133,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	/**
 	 * Unwrap response object.
 	 *
-	 * <p>Checks for nullability, response code, and body nullability.
+	 * <p>Checks for response & body nullability, and the code of supposed.
 	 *
 	 * @param response		response object
 	 * @param <R>			response type
