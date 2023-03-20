@@ -133,7 +133,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	/**
 	 * Unwrap response object.
 	 *
-	 * <p>Checks for response & body nullability, and the code of supposed.
+	 * <p>Checks for response and body nullability, and the code of supposed.
 	 *
 	 * @param response		response object
 	 * @param <R>			response type
