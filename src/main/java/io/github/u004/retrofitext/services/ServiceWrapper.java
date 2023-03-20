@@ -44,4 +44,13 @@ public class ServiceWrapper<T> {
 	protected ServiceWrapper(Retrofit retrofit, Class<T> clazz) {
 		this.service = retrofit.create(clazz);
 	}
+
+	/**
+	 * Get this retrofit service instance.
+	 *
+	 * @return		retrofit service instance
+	 */
+	public final T getService() {
+		return this.service;
+	}
 }
