@@ -1,7 +1,7 @@
 [kreedz-api-sdk]: https://github.com/u004/kreedz-api-sdk
 
 # Specification
-This my own specification to help myself the building
+This' my own specification to help myself the building
 of REST API clients using the Retrofit2 library.
 Example in usage you can find on [u004/kreedz-api-sdk][kreedz-api-sdk].
 That whole project built using these help-classes in the base
