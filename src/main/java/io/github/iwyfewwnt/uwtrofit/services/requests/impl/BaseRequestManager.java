@@ -38,8 +38,8 @@ public abstract class BaseRequestManager<T extends BaseRequestManager<T, U, R>, 
 	/**
 	 * Initialize a {@link BaseRequestManager} instance.
 	 */
+	@SuppressWarnings("unchecked")
 	protected BaseRequestManager() {
-		//noinspection unchecked
 		this.asT = (T) this;
 	}
 }
