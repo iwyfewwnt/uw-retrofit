@@ -62,9 +62,9 @@ public interface IRequestExecutor<T extends IRequest, R> {
 
 						if (throwables[0] != null) {
 							completableFuture.completeExceptionally(throwables[0]);
+						} else {
+							completableFuture.complete(body);
 						}
-
-						completableFuture.complete(body);
 					}
 
 					@Override
