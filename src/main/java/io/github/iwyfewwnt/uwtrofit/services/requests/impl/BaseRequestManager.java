@@ -36,7 +36,7 @@ public abstract class BaseRequestManager<T extends BaseRequestManager<T, U, R>, 
 	protected final T asT;
 
 	/**
-	 * Initialize a {@code BaseRequestManager} instance.
+	 * Initialize a {@link BaseRequestManager} instance.
 	 */
 	protected BaseRequestManager() {
 		//noinspection unchecked

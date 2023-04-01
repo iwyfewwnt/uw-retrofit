@@ -34,12 +34,12 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class QueryConverterFactory extends Converter.Factory {
 
 	/**
-	 * {@link Converter} cache.
+	 * A {@link Converter} cache.
 	 */
 	private final Map<String, Converter<?, String>> converters;
 
 	/**
-	 * Initialize a {@code QueryConverterFactory} instance.
+	 * Initialize a {@link QueryConverterFactory} instance.
 	 */
 	private QueryConverterFactory() {
 		this.converters = new ConcurrentHashMap<>();
@@ -48,20 +48,20 @@ public final class QueryConverterFactory extends Converter.Factory {
 	/**
 	 * Factory create method to match retrofit library style.
 	 *
-	 * <p>Wraps {@code QueryConverterFactory} default constructor.
+	 * <p>Wraps {@link QueryConverterFactory#QueryConverterFactory()}.
 	 *
-	 * @return	{@code QueryConverterFactory} instance
+	 * @return	new {@link QueryConverterFactory} instance
 	 */
 	public static QueryConverterFactory create() {
 		return new QueryConverterFactory();
 	}
 
 	/**
-	 * Register string converter.
+	 * Register the provided string converter.
 	 *
 	 * @param type			query parameter type
-	 * @param converter		string converter
-	 * @return				this {@code QueryConverterFactory} instance
+	 * @param converter		string converter to register
+	 * @return				this {@link QueryConverterFactory} instance
 	 */
 	public QueryConverterFactory registerStringConverter(Type type, Converter<?, String> converter) {
 		if (type != null && converter != null) {

@@ -22,8 +22,7 @@ import retrofit2.Retrofit;
 /**
  * A retrofit service wrapper.
  *
- * <p>{@code RetrofitServiceWrapper} is the class that
- * wraps retrofit service and extends it to base classes.
+ * <p>Wraps retrofit service {@literal &} extends it to base classes.
  *
  * @param <T>	retrofit service type
  */
@@ -36,10 +35,10 @@ public class RetrofitServiceWrapper<T> implements IServiceWrapper<T> {
 	protected final T service;
 
 	/**
-	 * Initialize a {@code RetrofitServiceWrapper} instance.
+	 * Initialize a {@link RetrofitServiceWrapper} instance.
 	 *
-	 * @param retrofit		retrofit instance
-	 * @param clazz			retrofit service class
+	 * @param retrofit	retrofit instance
+	 * @param clazz		retrofit service class
 	 */
 	protected RetrofitServiceWrapper(Retrofit retrofit, Class<T> clazz) {
 		this.service = retrofit.create(clazz);

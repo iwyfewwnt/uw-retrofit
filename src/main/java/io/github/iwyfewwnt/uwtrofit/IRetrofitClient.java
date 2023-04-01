@@ -26,8 +26,8 @@ public interface IRetrofitClient {
 	 * Get a service wrapper/implementation
 	 * for the provided service interface class.
 	 *
-	 * @param clazz			service interface class
-	 * @return				service wrapper/implementation
+	 * @param clazz		service interface class
+	 * @return			service wrapper/implementation
 	 */
 	Object getService(Class<?> clazz);
 }

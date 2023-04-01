@@ -32,7 +32,7 @@ import java.util.concurrent.CompletableFuture;
 public abstract class AbstractRequestManager<T extends IRequest, R> implements IRequestManager<T, R> {
 
 	/**
-	 * Initialize an {@code AbstractRequestManager} instance.
+	 * Initialize an {@link AbstractRequestManager} instance.
 	 */
 	protected AbstractRequestManager() {
 	}
