@@ -16,7 +16,7 @@
 
 package io.github.iwyfewwnt.uwtrofit.services.requests;
 
-import io.vavr.control.Try;
+//import io.vavr.control.Try;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -39,9 +39,16 @@ public interface IRequestManager<T extends IRequest, R> extends IRequestBuilder<
 	}
 
 	/**
+	 * Wraps {@link IRequestExecutor#execute(IRequest, Throwable[])}.
+	 */
+	default R execute(Throwable[] throwables) {
+		return this.execute(this.build(), throwables);
+	}
+
+	/**
 	 * Wrap {@link IRequestExecutor#execute(IRequest)}.
 	 */
-	default Try<R> execute() {
+	default R execute() {
 		return this.execute(this.build());
 	}
 }

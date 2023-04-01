@@ -16,11 +16,12 @@
 
 package io.github.iwyfewwnt.uwtrofit.services.requests;
 
-import io.vavr.control.Try;
+//import io.vavr.control.Try;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -31,13 +32,14 @@ import java.util.concurrent.CompletableFuture;
  * @param <T>	request type
  * @param <R>	response type
  */
+@SuppressWarnings("unused")
 public interface IRequestExecutor<T extends IRequest, R> {
 
 	/**
 	 * Execute retrofit service method.
 	 *
 	 * @param request	request object
-	 * @return			unwrapped response that wrapped in {@link Call}
+	 * @return			response body that wrapped in {@link Call}
 	 */
 	Call<R> call(T request);
 
@@ -45,7 +47,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	 * Asynchronously execute retrofit service method.
 	 *
 	 * @param request	request object
-	 * @return			unwrapped response that wrapped in {@link CompletableFuture}
+	 * @return			response body that wrapped in {@link CompletableFuture}
 	 */
 	default CompletableFuture<R> enqueue(T request) {
 		CompletableFuture<R> completableFuture = new CompletableFuture<>();
@@ -54,14 +56,20 @@ public interface IRequestExecutor<T extends IRequest, R> {
 				.enqueue(new Callback<R>() {
 					@Override
 					public void onResponse(Call<R> call, Response<R> response) {
-						unwrap(response)
-								.onSuccess(completableFuture::complete)
-								.onFailure(completableFuture::completeExceptionally);
+						Throwable[] throwables = new Throwable[1];
+
+						R body = unwrap(response, throwables);
+
+						if (throwables[0] != null) {
+							completableFuture.completeExceptionally(throwables[0]);
+						}
+
+						completableFuture.complete(body);
 					}
 
 					@Override
-					public void onFailure(Call<R> call, Throwable t) {
-						completableFuture.completeExceptionally(t);
+					public void onFailure(Call<R> call, Throwable throwable) {
+						completableFuture.completeExceptionally(throwable);
 					}
 				});
 
@@ -71,39 +79,91 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	/**
 	 * Synchronously execute retrofit service method.
 	 *
-	 * @param request	request object
-	 * @return			unwrapped response that wrapped in {@link Try}
+	 * @param request		request object to pass in call
+	 * @param throwables	array to fill thrown exception with
+	 * @return				response body or {@code null}
 	 */
-	default Try<R> execute(T request) {
-		return Try.of(() -> this.call(request))
-				.flatMap(call -> Try.of(call::execute))
-				.flatMap(IRequestExecutor::unwrap);
+	default R execute(T request, Throwable[] throwables) {
+		boolean bThrowable = throwables != null && throwables.length != 0;
+
+		try {
+			Call<R> call = this.call(request);
+
+			if (call == null) {
+				throw new NullPointerException("Call<?> mustn't be <null>");
+			}
+
+			return unwrap(call.execute(), throwables);
+		} catch (IOException | RuntimeException e) {
+			if (bThrowable) {
+				throwables[0] = e;
+			}
+		}
+
+		return null;
 	}
 
 	/**
-	 * Unwrap response object.
+	 * Synchronously execute retrofit service method.
+	 *
+	 * <p>Wraps {@link IRequestExecutor#execute(IRequest, Throwable[])}
+	 * w/ {@code null} as the throwables parameter.
+	 *
+	 * @param request	request object to pass in call
+	 * @return			response body or {@code null}
+	 */
+	default R execute(T request) {
+		return execute(request, null);
+	}
+
+	/**
+	 * Get response body from the provided response object.
 	 *
 	 * <p>Checks for response and body nullability, and the code of supposed.
 	 *
-	 * @param response		response object
-	 * @param <R>			response type
-	 * @return				unwrapped response that wrapped in {@link Try}
+	 * @param response		response object to unwrap
+	 * @param throwables 	array to fill thrown exception with
+	 * @param <R>			response body type
+	 * @return				response body or {@code null}
 	 */
-	static <R> Try<R> unwrap(Response<R> response) {
-		if (response == null) {
-			return Try.failure(new NullPointerException("Response mustn't be <null>"));
+	static <R> R unwrap(Response<R> response, Throwable[] throwables) {
+		boolean bThrowable = throwables != null && throwables.length != 0;
+
+		try {
+			if (response == null) {
+				throw new NullPointerException("Response mustn't be <null>");
+			}
+
+			if (!response.isSuccessful()) {
+				throw new IllegalStateException("Response code <" + response.code() + ">");
+			}
+
+			R body = response.body();
+
+			if (body == null) {
+				throw new NullPointerException("Response body mustn't be <null>");
+			}
+
+			return body;
+		} catch (NullPointerException | IllegalStateException e) {
+			if (bThrowable) {
+				throwables[0] = e;
+			}
 		}
 
-		if (!response.isSuccessful()) {
-			return Try.failure(new IllegalStateException("Response code <" + response.code() + ">"));
-		}
+		return null;
+	}
 
-		R body = response.body();
-
-		if (body == null) {
-			return Try.failure(new NullPointerException("Response body mustn't be <null>"));
-		}
-
-		return Try.success(body);
+	/**
+	 * Get response body from the provided response object.
+	 *
+	 * <p>Checks for response and body nullability, and the code of supposed.
+	 *
+	 * @param response	response object to unwrap
+	 * @param <R>		response body type
+	 * @return			response body or {@code null}
+	 */
+	static <R> R unwrap(Response<R> response) {
+		return unwrap(response, null);
 	}
 }

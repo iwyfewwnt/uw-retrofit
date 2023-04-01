@@ -18,7 +18,7 @@ package io.github.iwyfewwnt.uwtrofit.services.requests.impl;
 
 import io.github.iwyfewwnt.uwtrofit.services.requests.IRequest;
 import io.github.iwyfewwnt.uwtrofit.services.requests.IRequestManager;
-import io.vavr.control.Try;
+//import io.vavr.control.Try;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -46,10 +46,18 @@ public abstract class AbstractRequestManager<T extends IRequest, R> implements I
 	}
 
 	/**
+	 * Wrap {@link IRequestManager#execute(Throwable[])} and make it final.
+	 */
+	@Override
+	public final R execute(Throwable[] throwables) {
+		return IRequestManager.super.execute(throwables);
+	}
+
+	/**
 	 * Wrap {@link IRequestManager#execute()} and make it final.
 	 */
 	@Override
-	public final Try<R> execute() {
+	public final R execute() {
 		return IRequestManager.super.execute();
 	}
 
@@ -62,10 +70,18 @@ public abstract class AbstractRequestManager<T extends IRequest, R> implements I
 	}
 
 	/**
+	 * Wrap {@link IRequestManager#execute(IRequest, Throwable[])} and make it final.
+	 */
+	@Override
+	public final R execute(T request, Throwable[] throwables) {
+		return IRequestManager.super.execute(request, throwables);
+	}
+
+	/**
 	 * Wrap {@link IRequestManager#execute(IRequest)} and make it final.
 	 */
 	@Override
-	public final Try<R> execute(T request) {
+	public final R execute(T request) {
 		return IRequestManager.super.execute(request);
 	}
 }
