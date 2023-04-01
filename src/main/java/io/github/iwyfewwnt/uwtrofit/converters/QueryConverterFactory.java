@@ -59,14 +59,13 @@ public final class QueryConverterFactory extends Converter.Factory {
 	/**
 	 * Register string converter.
 	 *
-	 * @param clazz			query parameter class type
+	 * @param type			query parameter type
 	 * @param converter		string converter
-	 * @param <T>			query parameter type
 	 * @return				this {@code QueryConverterFactory} instance
 	 */
-	public <T> QueryConverterFactory registerStringConverter(Class<T> clazz, Converter<T, String> converter) {
-		if (clazz != null && converter != null) {
-			this.converters.putIfAbsent(clazz.getTypeName(), converter);
+	public QueryConverterFactory registerStringConverter(Type type, Converter<?, String> converter) {
+		if (type != null && converter != null) {
+			this.converters.putIfAbsent(type.getTypeName(), converter);
 		}
 
 		return this;
