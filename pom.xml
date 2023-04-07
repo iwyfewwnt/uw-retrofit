@@ -54,7 +54,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <retrofit.version>2.9.0</retrofit.version>
-<!--        <vavr.version>0.10.4</vavr.version>-->
 
         <javadoc.stylesheet.filePath>${project.basedir}/src/main/resources/javadoc-drakula.css</javadoc.stylesheet.filePath>
 
@@ -80,11 +79,6 @@
             <version>${retrofit.version}</version>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.vavr</groupId>-->
-<!--            <artifactId>vavr</artifactId>-->
-<!--            <version>${vavr.version}</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>

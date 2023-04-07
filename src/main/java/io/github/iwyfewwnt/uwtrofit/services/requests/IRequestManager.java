@@ -16,8 +16,6 @@
 
 package io.github.iwyfewwnt.uwtrofit.services.requests;
 
-//import io.vavr.control.Try;
-
 import java.util.concurrent.CompletableFuture;
 
 /**

@@ -16,7 +16,6 @@
 
 package io.github.iwyfewwnt.uwtrofit.services.requests;
 
-//import io.vavr.control.Try;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
