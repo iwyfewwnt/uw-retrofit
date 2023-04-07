@@ -55,7 +55,12 @@
 
         <retrofit.version>2.9.0</retrofit.version>
 
-        <javadoc.stylesheet.filePath>${project.basedir}/src/main/resources/javadoc-drakula.css</javadoc.stylesheet.filePath>
+        <!-- Project Resources -->
+        <project.resources.dirPath>${project.basedir}/src/main/resources</project.resources.dirPath>
+
+        <!-- Javadoc Stylesheet -->
+        <javadoc.stylesheet.fileName>javadoc-drakula.css</javadoc.stylesheet.fileName>
+        <javadoc.stylesheet.filePath>${project.resources.dirPath}/${javadoc.stylesheet.fileName}</javadoc.stylesheet.filePath>
 
         <!-- Maven Plugin Versions -->
         <maven.install.version>2.5.2</maven.install.version>
@@ -76,6 +81,14 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${project.resources.dirPath}</directory>
+                <excludes>
+                    <exclude>${javadoc.stylesheet.fileName}</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
