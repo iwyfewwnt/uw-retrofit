@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.iwyfewwnt.uwtrofit.services.requests;
+package io.github.iwyfewwnt.uwretrofit.services.requests;
 
 import retrofit2.Call;
 import retrofit2.Callback;

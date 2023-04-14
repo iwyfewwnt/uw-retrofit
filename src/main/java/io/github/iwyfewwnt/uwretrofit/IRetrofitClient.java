@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package io.github.iwyfewwnt.uwtrofit.services.requests;
-
-import java.io.Serializable;
+package io.github.iwyfewwnt.uwretrofit;
 
 /**
- * A request interface.
+ * A retrofit client interface.
  */
-public interface IRequest extends Serializable {
+@SuppressWarnings("unused")
+public interface IRetrofitClient {
+
+	/**
+	 * Get a service wrapper/implementation
+	 * for the provided service interface class.
+	 *
+	 * @param clazz		service interface class
+	 * @return			service wrapper/implementation
+	 */
+	Object getService(Class<?> clazz);
 }

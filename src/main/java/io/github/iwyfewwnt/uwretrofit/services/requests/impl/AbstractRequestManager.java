@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package io.github.iwyfewwnt.uwtrofit.services.requests.impl;
+package io.github.iwyfewwnt.uwretrofit.services.requests.impl;
 
-import io.github.iwyfewwnt.uwtrofit.services.requests.IRequest;
-import io.github.iwyfewwnt.uwtrofit.services.requests.IRequestManager;
+import io.github.iwyfewwnt.uwretrofit.services.requests.IRequest;
+import io.github.iwyfewwnt.uwretrofit.services.requests.IRequestManager;
 
 import java.util.concurrent.CompletableFuture;
 

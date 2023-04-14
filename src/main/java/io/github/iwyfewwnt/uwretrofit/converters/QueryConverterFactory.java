@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.iwyfewwnt.uwtrofit.converters;
+package io.github.iwyfewwnt.uwretrofit.converters;
 
 import retrofit2.Converter;
 import retrofit2.Retrofit;

@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package io.github.iwyfewwnt.uwtrofit.services;
+package io.github.iwyfewwnt.uwretrofit.services.requests;
 
 /**
- * A service wrapper interface.
+ * A request builder interface.
  *
- * @param <T>	service type
+ * <p>Defines a method for building requests.
+ *
+ * @param <T>	request type
  */
-@SuppressWarnings("unused")
-public interface IServiceWrapper<T> {
+public interface IRequestBuilder<T extends IRequest> {
 
 	/**
-	 * Get this service instance.
+	 * Build request.
 	 *
-	 * @return		service instance
+	 * @return	request object
 	 */
-	T getService();
+	T build();
 }
