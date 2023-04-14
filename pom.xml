@@ -30,7 +30,7 @@
     <scm>
         <connection>scm:git:git://github.com/iwyfewwnt/uw-retrofit.git</connection>
         <developerConnection>scm:git:ssh://github.com:iwyfewwnt/uw-retrofit.git</developerConnection>
-        <url>https://github.com/iwyfewwnt/uw-retrofit/tree/master</url>
+        <url>https://github.com/iwyfewwnt/uw-retrofit/tree/main</url>
     </scm>
 
     <distributionManagement>
