@@ -30,7 +30,7 @@ import retrofit2.Retrofit;
 public class RetrofitServiceWrapper<T> implements IServiceWrapper<T> {
 
 	/**
-	 * Retrofit service instance.
+	 * A retrofit service.
 	 */
 	protected final T service;
 
