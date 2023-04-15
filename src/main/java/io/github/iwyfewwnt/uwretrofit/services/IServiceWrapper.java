@@ -27,7 +27,7 @@ public interface IServiceWrapper<T> {
 	/**
 	 * Get this service instance.
 	 *
-	 * @return		service instance
+	 * @return	service instance
 	 */
 	T getService();
 }
