@@ -16,6 +16,8 @@
 
 package io.github.iwyfewwnt.uwretrofit.services.requests;
 
+import retrofit2.Call;
+
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -28,6 +30,13 @@ import java.util.concurrent.CompletableFuture;
  */
 @SuppressWarnings("unused")
 public interface IRequestManager<T extends IRequest, R> extends IRequestBuilder<T>, IRequestExecutor<T, R> {
+
+	/**
+	 * Wrap {@link IRequestExecutor#call(IRequest)}.
+	 */
+	default Call<R> call() {
+		return this.call(this.build());
+	}
 
 	/**
 	 * Wrap {@link IRequestExecutor#enqueue(IRequest)}.

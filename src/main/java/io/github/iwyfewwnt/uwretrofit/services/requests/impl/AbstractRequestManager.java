@@ -18,6 +18,7 @@ package io.github.iwyfewwnt.uwretrofit.services.requests.impl;
 
 import io.github.iwyfewwnt.uwretrofit.services.requests.IRequest;
 import io.github.iwyfewwnt.uwretrofit.services.requests.IRequestManager;
+import retrofit2.Call;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -34,6 +35,14 @@ public abstract class AbstractRequestManager<T extends IRequest, R> implements I
 	 * Initialize an {@link AbstractRequestManager} instance.
 	 */
 	protected AbstractRequestManager() {
+	}
+
+	/**
+	 * Wrap {@link IRequestManager#call()} and make it final.
+	 */
+	@Override
+	public final Call<R> call() {
+		return IRequestManager.super.call();
 	}
 
 	/**
