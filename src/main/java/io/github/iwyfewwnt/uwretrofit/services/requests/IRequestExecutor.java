@@ -16,6 +16,7 @@
 
 package io.github.iwyfewwnt.uwretrofit.services.requests;
 
+import io.github.iwyfewwnt.uwutils.UwArray;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -83,8 +84,6 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	 * @return				response body or {@code null}
 	 */
 	default R execute(T request, Throwable[] throwables) {
-		boolean bThrowable = throwables != null && throwables.length != 0;
-
 		try {
 			Call<R> call = this.call(request);
 
@@ -94,9 +93,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 
 			return unwrap(call.execute(), throwables);
 		} catch (IOException | RuntimeException e) {
-			if (bThrowable) {
-				throwables[0] = e;
-			}
+			UwArray.propagate(e, throwables);
 		}
 
 		return null;
@@ -126,8 +123,6 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	 * @return				response body or {@code null}
 	 */
 	static <R> R unwrap(Response<R> response, Throwable[] throwables) {
-		boolean bThrowable = throwables != null && throwables.length != 0;
-
 		try {
 			if (response == null) {
 				throw new NullPointerException("Response mustn't be <null>");
@@ -145,9 +140,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 
 			return body;
 		} catch (NullPointerException | IllegalStateException e) {
-			if (bThrowable) {
-				throwables[0] = e;
-			}
+			UwArray.propagate(e, throwables);
 		}
 
 		return null;

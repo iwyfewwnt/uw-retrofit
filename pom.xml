@@ -54,6 +54,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <retrofit.version>2.9.0</retrofit.version>
+        <uwutils.version>0.2.0-SNAPSHOT</uwutils.version>
 
         <!-- Project Resources -->
         <project.resources.dirPath>${project.basedir}/src/main/resources</project.resources.dirPath>
@@ -77,6 +78,11 @@
             <artifactId>retrofit</artifactId>
             <version>${retrofit.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.iwyfewwnt</groupId>
+            <artifactId>uwutils</artifactId>
+            <version>${uwutils.version}</version>
         </dependency>
     </dependencies>
 
