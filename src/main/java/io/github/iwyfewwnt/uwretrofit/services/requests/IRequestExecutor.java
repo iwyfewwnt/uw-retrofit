@@ -50,30 +50,40 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	 * @return			response body that wrapped in {@link CompletableFuture}
 	 */
 	default CompletableFuture<R> enqueue(T request) {
-		CompletableFuture<R> completableFuture = new CompletableFuture<>();
+		CompletableFuture<R> future = new CompletableFuture<>();
 
-		this.call(request)
-				.enqueue(new Callback<R>() {
-					@Override
-					public void onResponse(Call<R> call, Response<R> response) {
-						Throwable[] throwables = new Throwable[1];
+		Call<R> call = this.call(request);
 
-						R body = unwrap(response, throwables);
+		if (call == null) {
+			future.completeExceptionally(new NullPointerException(
+					"Call<?> mustn't be <null>"));
+			return future;
+		}
 
-						if (throwables[0] != null) {
-							completableFuture.completeExceptionally(throwables[0]);
-						} else {
-							completableFuture.complete(body);
-						}
-					}
+		call.enqueue(new Callback<R>() {
+			@Override
+			public void onResponse(Call<R> call, Response<R> response) {
+				Throwable[] throwables = new Throwable[1];
 
-					@Override
-					public void onFailure(Call<R> call, Throwable throwable) {
-						completableFuture.completeExceptionally(throwable);
-					}
-				});
+				R body = unwrap(response, throwables);
 
-		return completableFuture;
+				Throwable throwable = throwables[0];
+
+				if (throwable != null) {
+					future.completeExceptionally(throwable);
+					return;
+				}
+
+				future.complete(body);
+			}
+
+			@Override
+			public void onFailure(Call<R> call, Throwable throwable) {
+				future.completeExceptionally(throwable);
+			}
+		});
+
+		return future;
 	}
 
 	/**
