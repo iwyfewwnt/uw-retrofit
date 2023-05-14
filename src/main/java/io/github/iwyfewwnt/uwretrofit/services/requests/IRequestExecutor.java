@@ -112,7 +112,7 @@ public interface IRequestExecutor<T extends IRequest, R> {
 	/**
 	 * Synchronously execute retrofit service method.
 	 *
-	 * <p>Wraps {@link IRequestExecutor#execute(IRequest, Throwable[])}
+	 * <p>Wraps {@link #execute(IRequest, Throwable[])}
 	 * w/ {@code null} as the throwables parameter.
 	 *
 	 * @param request	request object to pass in call

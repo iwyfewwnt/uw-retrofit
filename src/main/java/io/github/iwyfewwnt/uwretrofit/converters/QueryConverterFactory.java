@@ -48,7 +48,7 @@ public final class QueryConverterFactory extends Converter.Factory {
 	/**
 	 * Factory create method to match retrofit library style.
 	 *
-	 * <p>Wraps {@link QueryConverterFactory#QueryConverterFactory()}.
+	 * <p>Wraps {@link #QueryConverterFactory()}.
 	 *
 	 * @return	new {@link QueryConverterFactory} instance
 	 */
