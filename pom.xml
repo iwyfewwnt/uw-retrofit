@@ -67,7 +67,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <retrofit.version>2.9.0</retrofit.version>
-        <uwutils.version>0.2.0-SNAPSHOT</uwutils.version>
+        <uwutils.version>0.2.1-SNAPSHOT</uwutils.version>
 
         <!-- Maven Plugin Versions -->
         <maven.install.version>2.5.2</maven.install.version>
